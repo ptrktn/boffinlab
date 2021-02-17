@@ -5,7 +5,7 @@ VENV_PKGS = numpy pandas matplotlib seaborn sklearn tensorflow jupyterlab
 all: $(VENV) install-venv
 
 $(VENV):
-  python3 -m venv venv
+  python3 -m venv $(HOME)/venv
 
 .PHONY: install-venv
 install-venv: $(VENV)
