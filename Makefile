@@ -1,7 +1,8 @@
 BOFFIN    = boffin
 VENV      = $(HOME)/venv
 VENV_PKGS = numpy pandas matplotlib seaborn sklearn jupyterlab \
-            sqlalchemy mysql-connector-python psycopg2-binary
+            sqlalchemy mysql-connector-python psycopg2-binary \
+            beautifulsoup4
 
 .PHONY: all
 all: $(VENV) install-venv configure-services doc
@@ -67,7 +68,7 @@ deps:
         dpkg-sig libclang-dev dirmngr apt-transport-https ca-certificates \
         software-properties-common gnupg2 libxml2-dev \
         libcurl4-openssl-dev libidn11-dev libkrb5-dev libldap2-dev \
-        librtmp-devlibssh2-1-dev
+        librtmp-devlibssh2-1-dev task-spooler
 	mkdir -p /var/lib/systemd/linger
 	touch /var/lib/systemd/linger/$(BOFFIN)
 	sed -i.orig -e 's/.*KillUserProcesses=.*/KillUserProcesses=no/g' /etc/systemd/logind.conf
