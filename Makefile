@@ -5,7 +5,7 @@ VENV_PKGS = numpy pandas matplotlib seaborn sklearn jupyterlab \
             beautifulsoup4
 
 .PHONY: all
-all: $(VENV) install-venv configure-services doc
+all: $(VENV) install-venv configure-services
 
 $(VENV):
 	python3 -m venv $(HOME)/venv
