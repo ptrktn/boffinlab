@@ -94,6 +94,8 @@ deps:
 	R -e "install.packages('httr')"
 	R -e "install.packages('mclust')"
 	R -e "install.packages('mice')"
+	R -e "install.packages('e1071')"
+	R -e "install.packages('caret')"
 	R -e "install.packages('devtools')"
 	R -e "devtools::install_github('testmycode/tmc-r-tester/tmcRtestrunner')"
 	R -e "devtools::install_github('testmycode/tmc-rstudio/tmcrstudioaddin')"
