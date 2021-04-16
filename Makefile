@@ -79,6 +79,7 @@ deps:
 	apt-get install -y -t bullseye-cran40 r-base
 	R -e "install.packages('IRkernel')"
 	R -e "install.packages('RMariaDB')"
+	R -e "install.packages('RPostgreSQL')"
 	R -e "install.packages('curl')"
 	R -e "install.packages('R.methodsS3')"
 	R -e "install.packages('R.oo')"
