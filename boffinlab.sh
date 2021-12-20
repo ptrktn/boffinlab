@@ -3,7 +3,6 @@
 set -o errexit -o nounset -o pipefail
 #set -o xtrace
 fix=1
-
 if [ "Darwin" = "$(uname)" ] ; then
 	cd $(dirname $0) || exit 1
 else
@@ -16,7 +15,7 @@ start() {
 	local webport=${3:-58888}
 	local rport=${4:-58787}
 	local ostype=Debian_64
-	local os_iso_url=https://cdimage.debian.org/cdimage/bullseye_di_alpha3/amd64/iso-cd/debian-bullseye-DI-alpha3-amd64-netinst.iso
+	local os_iso_url=https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.2.0-amd64-netinst.iso
 	local os_iso=$(basename $os_iso_url)
 
 	if ! test -e $os_iso; then
@@ -119,6 +118,20 @@ EOF
 	diff -u ${aux_base_path}isolinux-txt.cfg.orig ${aux_base_path}isolinux-txt.cfg || true
 
 	VBoxManage startvm $vm --type headless
+
+	echo "Waiting installation to finish (this will take time)"
+
+	while [ /bin/true ] ; do
+		timeout 1m curl -s http://localhost:${webport} > /dev/null 2>&1 && break
+		sleep 60
+	done
+
+	echo "Installation is done"
+	echo "Login using:"
+	echo "ssh -o PubkeyAuthentication=no -l root -p $sshport localhost"
+	echo "Jupyter URL is http://localhost:${webport}"
+	echo "R Server URL is http://localhost:${rport}"
+	echo "Password is 'sauna'"
 }
 
 start $1 $2 $3 $4

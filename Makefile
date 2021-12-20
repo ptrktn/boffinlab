@@ -73,7 +73,7 @@ deps:
 	touch /var/lib/systemd/linger/$(BOFFIN)
 	sed -i.orig -e 's/.*KillUserProcesses=.*/KillUserProcesses=no/g' /etc/systemd/logind.conf
 	sed -i.orig -e 's/.*PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config
-	apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-key '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7'
 	add-apt-repository 'deb http://cloud.r-project.org/bin/linux/debian bullseye-cran40/'
 	apt-get update || /bin/true
 	apt-get install -y -t bullseye-cran40 r-base
@@ -101,5 +101,5 @@ deps:
 	R -e "devtools::install_github('testmycode/tmc-r-tester/tmcRtestrunner')"
 	R -e "devtools::install_github('testmycode/tmc-rstudio/tmcrstudioaddin')"
 	gpg --keyserver keys.gnupg.net --recv-keys 3F32EE77E331692F
-	cd /tmp && curl -sLf -O https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1103-amd64.deb && dpkg-sig --verify rstudio-1.4.1103-amd64.deb && dpkg -i rstudio-1.4.1103-amd64.deb
-	cd /tmp && curl -sLf -O https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb && dpkg-sig --verify rstudio-server-1.4.1103-amd64.deb && dpkg -i rstudio-server-1.4.1103-amd64.deb
+	#cd /tmp && curl -sLf -O https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1103-amd64.deb && dpkg-sig --verify rstudio-1.4.1103-amd64.deb && dpkg -i rstudio-1.4.1103-amd64.deb
+	#cd /tmp && curl -sLf -O https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb && dpkg-sig --verify rstudio-server-1.4.1103-amd64.deb && dpkg -i rstudio-server-1.4.1103-amd64.deb
